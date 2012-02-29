@@ -1,0 +1,33 @@
+Problem:
+
+	ChildRole augments BUILD, but its augmentor is never called.
+
+main.pl
+
+	creates a new Class object.
+
+Class
+
+	This is just a class that consumes a parameterized role, ChildRole.
+	All the action happens in ParentRole and ChildRole.
+
+ParentRole
+
+	A wrapper around MooseX::Role::Parameterized.  It's a pared-down
+	representation of a larger, real role.
+
+	In the real context, it does more, but for now it should only behave
+	exactly like MooseX::Role::Parameterized.  For the most part it
+	does.
+
+ChildRole
+
+	Not strictly a child role, but I had to name it something.
+
+	It uses ParentRole as an equivalent to MooseX::Role::Parameterized.
+
+	When using ParentRole, it's C<after BUILD ....> augmentor is not
+	called.
+
+	The agumentor is called correctly when ChildRole uses
+	MooseX::Role::Parameterized directly.
